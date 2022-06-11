@@ -1419,7 +1419,7 @@
 <span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>               <span class="co">//конструктора копирования (нормальная форма записи)</span></span>
 <span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>    А аЗ<span class="op">(</span>а<span class="dv">1</span><span class="op">);</span> <span class="co">//то же самое (функциональная форма записи)</span></span>
 <span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>Но. если для нашего нетривиального класса Animal не реализован корректный конструктор копирования, то при использовании автоматического конструктора копирования вместо двух отдельных одинаковых животных, появляются «сиамские близнецы»:</p>
+<p>но, если для нашего нетривиального класса Animal не реализован корректный конструктор копирования, то при использовании автоматического конструктора копирования вместо двух отдельных одинаковых животных, появляются «сиамские близнецы»:</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    Animal al<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="kw">true</span><span class="op">,</span> MALE<span class="op">,</span> <span class="st">&quot;Bobik&quot;</span><span class="op">);</span></span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    Animal a2 <span class="op">=</span> a1<span class="op">;</span> <span class="co">//создаем клон объекта al. Здесь компилятор</span></span>
@@ -3411,7 +3411,7 @@
 <li><p>возвратите <code>*this</code></p></li>
 </ul>
 <h4 id="оператор-присваивания-и-наследование">1.1.21. Оператор присваивания и наследование</h4>
-<p>Ситуация с нетривиальными классами усугубляется при наследовании. Если в производном классе оператор присваивания не реализован, то в автоматическом операторе присваивания производного класса компилятор сам вызовет оператор присваивания базового класса. Но. если Вы взяли реализацию оператора присваивания на себя, то компилятор ничего автоматически делать за Вас не будет, то есть:</p>
+<p>Ситуация с нетривиальными классами усугубляется при наследовании. Если в производном классе оператор присваивания не реализован, то в автоматическом операторе присваивания производного класса компилятор сам вызовет оператор присваивания базового класса. Но если Вы взяли реализацию оператора присваивания на себя, то компилятор ничего автоматически делать за Вас не будет, то есть:</p>
 <ul>
 <li><p>(как и в случае конструктора копирования) перегруженный оператор присваивания производного класса работает только со своей (производной) частью объекта;</p></li>
 <li><p>если нет явного вызова оператора присваивания базового класса, базовая часть остается прежней!</p></li>
@@ -3479,7 +3479,7 @@
 <span id="cb171-20"><a href="#cb171-20" aria-hidden="true" tabindex="-1"></a>    Array<span class="op">&amp;</span> <span class="kw">operator</span><span class="op">=</span> <span class="op">(</span><span class="at">const</span> Array<span class="op">&amp;</span> other<span class="op">);</span> <span class="co">//оператор присваивания</span></span>
 <span id="cb171-21"><a href="#cb171-21" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
 <p>Реализация оператора присваивания.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a>Array<span class="op">&amp;</span> Array<span class="op">::</span><span class="kw">operator</span><span class="op">-(</span><span class="at">const</span> Array<span class="op">&amp;</span> other<span class="op">)</span></span>
+<div class="sourceCode" id="cb172"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a>Array<span class="op">&amp;</span> Array<span class="op">::</span><span class="kw">operator</span><span class="op">=(</span><span class="at">const</span> Array<span class="op">&amp;</span> other<span class="op">)</span></span>
 <span id="cb172-2"><a href="#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb172-3"><a href="#cb172-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span><span class="kw">this</span> <span class="op">!=</span> <span class="op">&amp;</span>other<span class="op">)</span></span>
 <span id="cb172-4"><a href="#cb172-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
@@ -3529,7 +3529,7 @@
 <span id="cb174-13"><a href="#cb174-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">m_p</span> <span class="op">=</span> r<span class="op">.</span>m_р<span class="op">;</span></span>
 <span id="cb174-14"><a href="#cb174-14" aria-hidden="true" tabindex="-1"></a>    r<span class="op">.</span><span class="va">m_p</span> <span class="op">=</span> p<span class="op">;</span></span>
 <span id="cb174-15"><a href="#cb174-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb174-16"><a href="#cb174-16" aria-hidden="true" tabindex="-1"></a>Array<span class="op">&amp;</span> Array<span class="op">::</span>oporator <span class="op">=</span> <span class="op">(</span><span class="at">const</span> Array <span class="op">&amp;</span> r<span class="op">)</span></span>
+<span id="cb174-16"><a href="#cb174-16" aria-hidden="true" tabindex="-1"></a>Array<span class="op">&amp;</span> Array<span class="op">::</span><span class="kw">operator</span><span class="op">=(</span><span class="at">const</span> Array<span class="op">&amp;</span> r<span class="op">)</span></span>
 <span id="cb174-17"><a href="#cb174-17" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb174-18"><a href="#cb174-18" aria-hidden="true" tabindex="-1"></a>    Array tmp <span class="op">=</span> r<span class="op">;</span><span class="co">//копия параметра</span></span>
 <span id="cb174-19"><a href="#cb174-19" aria-hidden="true" tabindex="-1"></a>    Swap<span class="op">(</span>tmp<span class="op">);</span> <span class="co">//обмен данными текущего объекта с копией.</span></span>
