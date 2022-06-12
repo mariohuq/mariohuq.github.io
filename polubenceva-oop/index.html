@@ -3901,35 +3901,36 @@
 <span id="cb198-2"><a href="#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb198-3"><a href="#cb198-3" aria-hidden="true" tabindex="-1"></a>    A a1<span class="op">(</span><span class="dv">1</span><span class="op">),</span> a2<span class="op">(</span><span class="dv">2</span><span class="op">),</span> a3<span class="op">;</span></span>
 <span id="cb198-4"><a href="#cb198-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">//в двух следующих выражениях предпочтительнее было бы</span></span>
-<span id="cb198-5"><a href="#cb198-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">//перегрузить оператор методом класса</span></span>
+<span id="cb198-5"><a href="#cb198-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">//перегрузить оператор методом класса:</span></span>
 <span id="cb198-6"><a href="#cb198-6" aria-hidden="true" tabindex="-1"></a>    a3 <span class="op">=</span> a1 <span class="op">+</span> a2<span class="op">;</span> <span class="co">//или а3 = operator+(al, а2);</span></span>
 <span id="cb198-7"><a href="#cb198-7" aria-hidden="true" tabindex="-1"></a>    a3 <span class="op">=</span> a1 <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="co">//или а3 = operator+(a1, 1);</span></span>
-<span id="cb198-8"><a href="#cb198-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">//а здесь перегрузка возможна только глобальной функцией, так</span></span>
-<span id="cb198-9"><a href="#cb198-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">//как левый операнд базового типа</span></span>
-<span id="cb198-10"><a href="#cb198-10" aria-hidden="true" tabindex="-1"></a>    a3 <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> a2<span class="op">;</span> <span class="co">//или а3 = operator+(2, а2);</span></span>
-<span id="cb198-11"><a href="#cb198-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb198-12"><a href="#cb198-12" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> A</span>
-<span id="cb198-13"><a href="#cb198-13" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb198-14"><a href="#cb198-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="va">m_a</span><span class="op">;</span></span>
-<span id="cb198-15"><a href="#cb198-15" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
-<span id="cb198-16"><a href="#cb198-16" aria-hidden="true" tabindex="-1"></a>    A<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
-<span id="cb198-17"><a href="#cb198-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">//перегрузка оператора + глобальной функцией</span></span>
-<span id="cb198-18"><a href="#cb198-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">friend</span> A <span class="kw">operator</span><span class="op">+(</span><span class="at">const</span> A<span class="op">&amp;</span> r1<span class="op">,</span> <span class="at">const</span> A<span class="op">&amp;</span> r2<span class="op">)</span></span>
-<span id="cb198-19"><a href="#cb198-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb198-20"><a href="#cb198-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
-<span id="cb198-21"><a href="#cb198-21" aria-hidden="true" tabindex="-1"></a>            A<span class="op">(</span>r1<span class="op">.</span><span class="va">m_a</span> <span class="op">+</span> r2<span class="op">.</span><span class="va">m_a</span><span class="op">);</span></span>
-<span id="cb198-22"><a href="#cb198-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb198-23"><a href="#cb198-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">friend</span> A <span class="kw">operator</span><span class="op">+(</span><span class="at">const</span> A<span class="op">&amp;</span> r1<span class="op">,</span> <span class="dt">int</span> n<span class="op">)</span></span>
-<span id="cb198-24"><a href="#cb198-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb198-25"><a href="#cb198-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
-<span id="cb198-26"><a href="#cb198-26" aria-hidden="true" tabindex="-1"></a>            A<span class="op">(</span>r1<span class="op">.</span><span class="va">m_a</span> <span class="op">+</span> n<span class="op">);</span></span>
-<span id="cb198-27"><a href="#cb198-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb198-28"><a href="#cb198-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">friend</span> A <span class="kw">operator</span><span class="op">+(</span><span class="dt">int</span> n<span class="op">,</span> <span class="at">const</span> A<span class="op">&amp;</span> r2<span class="op">)</span></span>
-<span id="cb198-29"><a href="#cb198-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb198-30"><a href="#cb198-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
-<span id="cb198-31"><a href="#cb198-31" aria-hidden="true" tabindex="-1"></a>            A<span class="op">(</span>n <span class="op">+</span> r2<span class="op">.</span><span class="va">m_a</span><span class="op">);</span></span>
-<span id="cb198-32"><a href="#cb198-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb198-33"><a href="#cb198-33" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<span id="cb198-8"><a href="#cb198-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb198-9"><a href="#cb198-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">//а здесь перегрузка возможна только глобальной функцией, так</span></span>
+<span id="cb198-10"><a href="#cb198-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">//как левый операнд базового типа:</span></span>
+<span id="cb198-11"><a href="#cb198-11" aria-hidden="true" tabindex="-1"></a>    a3 <span class="op">=</span> <span class="dv">2</span> <span class="op">+</span> a2<span class="op">;</span> <span class="co">//или а3 = operator+(2, а2);</span></span>
+<span id="cb198-12"><a href="#cb198-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb198-13"><a href="#cb198-13" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> A</span>
+<span id="cb198-14"><a href="#cb198-14" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb198-15"><a href="#cb198-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="va">m_a</span><span class="op">;</span></span>
+<span id="cb198-16"><a href="#cb198-16" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb198-17"><a href="#cb198-17" aria-hidden="true" tabindex="-1"></a>    A<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
+<span id="cb198-18"><a href="#cb198-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">//перегрузка оператора + глобальной функцией</span></span>
+<span id="cb198-19"><a href="#cb198-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">friend</span> A <span class="kw">operator</span><span class="op">+(</span><span class="at">const</span> A<span class="op">&amp;</span> r1<span class="op">,</span> <span class="at">const</span> A<span class="op">&amp;</span> r2<span class="op">)</span></span>
+<span id="cb198-20"><a href="#cb198-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb198-21"><a href="#cb198-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb198-22"><a href="#cb198-22" aria-hidden="true" tabindex="-1"></a>            A<span class="op">(</span>r1<span class="op">.</span><span class="va">m_a</span> <span class="op">+</span> r2<span class="op">.</span><span class="va">m_a</span><span class="op">);</span></span>
+<span id="cb198-23"><a href="#cb198-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb198-24"><a href="#cb198-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">friend</span> A <span class="kw">operator</span><span class="op">+(</span><span class="at">const</span> A<span class="op">&amp;</span> r1<span class="op">,</span> <span class="dt">int</span> n<span class="op">)</span></span>
+<span id="cb198-25"><a href="#cb198-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb198-26"><a href="#cb198-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb198-27"><a href="#cb198-27" aria-hidden="true" tabindex="-1"></a>            A<span class="op">(</span>r1<span class="op">.</span><span class="va">m_a</span> <span class="op">+</span> n<span class="op">);</span></span>
+<span id="cb198-28"><a href="#cb198-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb198-29"><a href="#cb198-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">friend</span> A <span class="kw">operator</span><span class="op">+(</span><span class="dt">int</span> n<span class="op">,</span> <span class="at">const</span> A<span class="op">&amp;</span> r2<span class="op">)</span></span>
+<span id="cb198-30"><a href="#cb198-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb198-31"><a href="#cb198-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb198-32"><a href="#cb198-32" aria-hidden="true" tabindex="-1"></a>            A<span class="op">(</span>n <span class="op">+</span> r2<span class="op">.</span><span class="va">m_a</span><span class="op">);</span></span>
+<span id="cb198-33"><a href="#cb198-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb198-34"><a href="#cb198-34" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
 <h2 id="правила-выбора-формы-перегрузки-операторов">Правила выбора формы перегрузки операторов</h2>
 <ul>
 <li><p>виртуальные функции должны быть членами класса</p></li>
@@ -4027,7 +4028,7 @@
 <span id="cb200-13"><a href="#cb200-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="op">(</span>A<span class="op">::*</span>pSample<span class="op">)()</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="co">//указатель на метод класса А, который</span></span>
 <span id="cb200-14"><a href="#cb200-14" aria-hidden="true" tabindex="-1"></a>                              <span class="co">//не принимает параметров и ничего не </span></span>
 <span id="cb200-15"><a href="#cb200-15" aria-hidden="true" tabindex="-1"></a>                              <span class="co">//возвращает</span></span>
-<span id="cb200-16"><a href="#cb200-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">//Какой из метод требуется вызвать для каждого элемента массива, </span></span>
+<span id="cb200-16"><a href="#cb200-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">//Какой из методов требуется вызвать для каждого элемента массива, </span></span>
 <span id="cb200-17"><a href="#cb200-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">//определяю случайным образом во время выполнения:</span></span>
 <span id="cb200-18"><a href="#cb200-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">switch</span> <span class="op">(</span>rand<span class="op">()</span> <span class="op">%</span> <span class="dv">2</span><span class="op">)</span></span>
 <span id="cb200-19"><a href="#cb200-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
@@ -4285,7 +4286,7 @@
 <span id="cb215-9"><a href="#cb215-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">//проинициализирована переменная m_n значением параметра п</span></span>
 <span id="cb215-10"><a href="#cb215-10" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
 <h2 id="пример-использования-встроенных-объектов-для-построения-квадратов-посредством-прямоугольников">Пример использования встроенных объектов для построения квадратов посредством прямоугольников</h2>
-<p>Замечание: этот прием используется в обобщенных классах стандартной библиотеки при создании классов-адаптеров. Идея заключается в том, что класс-адаптер содержит защищенный объект подходящего типа. Так как объект защищен, весь его public интерфейс извне недоступен. Поэтому пользоваться функциональностью такого встроенного объекта можно только из методов класса-владельца. А владелец реализует свои методы, пользуясь только теми возможностями встроенного объекта и только таким образом, как ему удобно. Например, реализуем класс, абстрагирующий квадрат, посредством встроенного объекта класса прямоугольник:</p>
+<p>Замечание: этот прием используется в обобщенных классах стандартной библиотеки при создании классов-адаптеров. Идея заключается в том, что класс-адаптер содержит защищенный объект подходящего типа. Так как объект защищен, весь его <code>public</code> интерфейс извне недоступен. Поэтому пользоваться функциональностью такого встроенного объекта можно только из методов класса-владельца. А владелец реализует свои методы, пользуясь только теми возможностями встроенного объекта и только таким образом, как ему удобно. Например, реализуем класс, абстрагирующий квадрат, посредством встроенного объекта класса прямоугольник:</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb216-1"><a href="#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rect</span>
 <span id="cb216-2"><a href="#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb216-3"><a href="#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="kw">protected</span><span class="op">:</span></span>
@@ -4318,7 +4319,7 @@
 <p>Ассоциативным массивом называется массив, в котором хранятся пары ключ/значение. Поиск значения происходит по ключу. В приведенном примере рассматривается не полноценный ассоциативный массив, а, пожалуй, первое приближение к его настоящей реализации. Реализуем «записную книжку», в которой будут храниться пары имя/телефон.</p>
 <p>В реализуемом ассоциативном массиве введем ограничение — ключ должен быть уникальным, то есть двух одинаковых имен быть не может.</p>
 <p>Замечание: так как речь пойдет о массиве (не имеет значения его внутренняя реализация), то очевидно потребуется перегрузка оператора <code>[]</code>. Если для обычных массивов индекс может быть только целым значением, то перегруженный оператор <code>[]</code> может принимать параметр любого типа.</p>
-<p>Пусть ассоциативный массив содержит пары: имя, номер телефона</p>
+<p>Пусть ассоциативный массив содержит пары: имя, номер телефона:</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb217-1"><a href="#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">size_t</span> KEY <span class="op">=</span> <span class="dv">20</span><span class="op">;</span></span>
 <span id="cb217-2"><a href="#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Pair</span>
 <span id="cb217-3"><a href="#cb217-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="co">//вспомогательный класс для хранения пар ключ/значение</span></span>
@@ -4340,11 +4341,11 @@
 <span id="cb217-19"><a href="#cb217-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
 <span id="cb217-20"><a href="#cb217-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> strncmp<span class="op">(</span>name<span class="op">,</span> k<span class="op">,</span> KEY<span class="op">)</span> <span class="op">==</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb217-21"><a href="#cb217-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb217-22"><a href="#cb217-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">friend</span> <span class="kw">class</span> book<span class="op">;</span></span>
+<span id="cb217-22"><a href="#cb217-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">friend</span> <span class="kw">class</span> Book<span class="op">;</span></span>
 <span id="cb217-23"><a href="#cb217-23" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
 <span id="cb217-24"><a href="#cb217-24" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> NUM <span class="op">=</span> <span class="dv">10</span><span class="op">;</span><span class="co">//пусть в записной книжке не может быть</span></span>
 <span id="cb217-25"><a href="#cb217-25" aria-hidden="true" tabindex="-1"></a>                   <span class="co">//больше NUM записей</span></span></code></pre></div>
-<p>//основной класс, абстрагирующий записную книжку. Это не совсем обычный массив, для которого справедлив произвольный доступ. Специфика такого «массива» заключается в том, что чтение и запись в массив осуществляются по-разному, поэтому реализуются эти две операции посредством двух разных методов. Добавляются элементы в такой массив «на свободное место», а при считывании из массива по указанному ключу ищется значение</p>
+<p><code>Book</code> — основной класс, абстрагирующий записную книжку. Это не совсем обычный массив, для которого справедлив произвольный доступ. Специфика такого «массива» заключается в том, что чтение и запись в массив осуществляются по-разному, поэтому реализуются эти две операции посредством двух разных методов. Добавляются элементы в такой массив «на свободное место», а при считывании из массива по указанному ключу ищется значение.</p>
 <div class="sourceCode" id="cb218"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb218-1"><a href="#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Book</span>
 <span id="cb218-2"><a href="#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb218-3"><a href="#cb218-3" aria-hidden="true" tabindex="-1"></a>    Pair ar<span class="op">[</span>NUM<span class="op">];</span> <span class="co">//для упрощения введем встроенный массив</span></span>
@@ -4706,10 +4707,10 @@
 <ul>
 <li><p>следствие 1 — в таких функциях указатель <code>this</code> не существует!!!</p></li>
 <li><p>следствие 2 — обратиться к нестатическим данным класса в такой функции не возможно</p></li>
-<li><p>следствие 3 — статическая функция не может быть virtual</p></li>
+<li><p>следствие 3 — статическая функция не может быть <code>virtual</code></p></li>
 </ul>
 <h3 id="использование-статических-методов-для-доступа-извне-к-private-или-protected-static-данным-класса">Использование статических методов для доступа извне к <code>private</code> или <code>protected</code> <code>static</code>-данным класса</h3>
-<p>Если бы статическая переменная nCount класса X была защищенной, для доступа к ней извне класса потребовался бы <code>public</code> статический метод класса. Например:</p>
+<p>Если бы статическая переменная <code>nCount</code> класса <code>X</code> была защищенной, для доступа к ней извне класса потребовался бы <code>public</code> статический метод класса. Например:</p>
 <div class="sourceCode" id="cb239"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb239-1"><a href="#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> X</span>
 <span id="cb239-2"><a href="#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb239-3"><a href="#cb239-3" aria-hidden="true" tabindex="-1"></a><span class="kw">protected</span><span class="op">:</span></span>
