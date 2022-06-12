@@ -1068,11 +1068,11 @@
 </ul>
 <p>Замечание: компилятор не всегда может создать автоматический конструктор по умолчанию. Ограничения:</p>
 <ul>
-<li>в классе объявлены константные члены данных;</li>
+<li><p>в классе объявлены константные члены данных;</p></li>
+<li><p>в классе объявлены ссылки;</p></li>
+<li><p>данный класс является производным, а в базовом классе конструктор объявлен <code>private</code>.</p></li>
 </ul>
-<p>в классе объявлены ссылки;</p>
-<p>данный класс является производным, а в базовом классе конструктор объявлен <code>private</code>.</p>
-<p>Например, пока мы не ввели в разрабатываемый класс Animal ни одного своего конструктора:</p>
+<p>Например, пока мы не ввели в разрабатываемый класс <code>Animal</code> ни одного своего конструктора:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    Animal an<span class="op">;</span> <span class="co">//выделена намять и вызван автоматический конструктор</span></span>
