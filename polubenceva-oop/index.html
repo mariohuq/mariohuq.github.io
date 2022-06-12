@@ -3127,7 +3127,7 @@
 <span id="cb151-10"><a href="#cb151-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">//std::cout&lt;&lt;z.m_z; //ошибка доступа</span></span>
 <span id="cb151-11"><a href="#cb151-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb151-12"><a href="#cb151-12" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div></li>
-<li><p>не является транзитивной (если класс <code>X</code> объявлен <code>friend</code>-классом в классе <code>Y</code>, а класс <code>Z</code> объявлен <code>friend</code>-классом в классе <code>X</code>, то класс <code>Z</code> не является <code>friend</code>-классом <code>X</code>).</p>
+<li><p>не является транзитивной (если класс <code>Z</code> объявлен <code>friend</code>-классом в классе <code>Y</code>, а класс <code>Y</code> объявлен <code>friend</code>-классом в классе <code>X</code>, то класс <code>Z</code> не является <code>friend</code>-классом <code>X</code>).</p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> X <span class="op">{</span> <span class="kw">friend</span> <span class="kw">class</span> Y<span class="op">;</span> <span class="op">};</span></span>
 <span id="cb152-2"><a href="#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Y <span class="op">{</span> <span class="kw">friend</span> <span class="kw">class</span> Z<span class="op">;</span> <span class="op">};</span></span></code></pre></div>
 <p>Методы класса <code>Z</code> не имеют права обращаться к защищенным членам класса <code>X</code>.</p></li>
