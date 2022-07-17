@@ -41,7 +41,7 @@
             "underline": false
         },
         "Operator": {
-            "text-color": "#008080",
+            "text-color": "#000000",
             "bold": false,
             "italic": false,
             "underline": false
@@ -145,6 +145,12 @@
             "underline": false
         },
         "Keyword": {
+            "text-color": "#0000ff",
+            "bold": false,
+            "italic": false,
+            "underline": false
+        },
+        "DataType": {
             "text-color": "#0000ff",
             "bold": false,
             "italic": false,
