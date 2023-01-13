@@ -8721,15 +8721,15 @@ class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb319-1"><a href="
 нужным, или не сможет привести и выдаст ошибку, но покажет на ошибку в
 теле макроса (и разобраться в чем дело будет достаточно трудно)</p></li>
 <li><p>некоторых «неожиданностей» при использовании макросов можно
-избежать с помощью скобок <code>(a) &lt; (Ь) ? (a) : (Ь)</code> —
+избежать с помощью скобок <code>(a) &lt; (b) ? (a) : (b)</code> —
 например: без скобок вызов макро <code>min(x &amp; y, z)</code>
 препроцессор превратит в <code>х &amp; (у &lt; b)</code>. а задумано
-было <code>(х &amp; у) &lt; Ь</code></p></li>
+было <code>(х &amp; у) &lt; b</code></p></li>
 <li><p>некоторых побочных эффектов даже при использовании скобок
 избежать не удастся:</p>
 <div class="sourceCode" id="cb320"><pre
 class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb320-1"><a href="#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> r <span class="op">=</span> min<span class="op">(</span>a<span class="op">++,</span> b<span class="op">++);</span> <span class="co">//превратится в</span></span>
-<span id="cb320-2"><a href="#cb320-2" aria-hidden="true" tabindex="-1"></a>                       <span class="co">//(a++) &lt; (Ь++) ? (a++) : (b++)</span></span></code></pre></div></li>
+<span id="cb320-2"><a href="#cb320-2" aria-hidden="true" tabindex="-1"></a>                       <span class="co">//(a++) &lt; (b++) ? (a++) : (b++)</span></span></code></pre></div></li>
 </ol></li>
 <li><p>с помощью шаблона функции можно</p>
 <ol type="a">
@@ -8751,7 +8751,7 @@ C++ (например, параметр шаблона гарантирован�
 объявить встраиваемым:</p>
 <div class="sourceCode" id="cb321"><pre
 class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb321-1"><a href="#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span> <span class="op">&lt;</span><span class="kw">class</span> T<span class="op">&gt;</span></span>
-<span id="cb321-2"><a href="#cb321-2" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> T min<span class="op">(</span>T a<span class="op">,</span> T b<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> <span class="op">(</span>a <span class="op">&lt;</span> Ь<span class="op">)</span> <span class="op">?</span> а <span class="op">:</span> b<span class="op">;</span> <span class="op">}</span></span></code></pre></div></li>
+<span id="cb321-2"><a href="#cb321-2" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> T min<span class="op">(</span>T a<span class="op">,</span> T b<span class="op">)</span> <span class="op">{</span> <span class="cf">return</span> <span class="op">(</span>a <span class="op">&lt;</span> b<span class="op">)</span> <span class="op">?</span> а <span class="op">:</span> b<span class="op">;</span> <span class="op">}</span></span></code></pre></div></li>
 <li><p>параметры шаблона (также как и параметры функции) могут иметь
 значения по умолчанию: <code
 class="sourceCode cpp">func<span class="op">(</span>T а <span class="op">=</span> Т<span class="op">())</span></code></p></li>
